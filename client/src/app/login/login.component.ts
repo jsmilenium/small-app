@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
                                                             this.router.navigate(["personal"])
                                                         }else{
                                                             if(customersstep[0]['id_step'] == 2){
-                                                                this.router.navigate(["personal"]);
-                                                            }else if(customersstep[0]['id_step'] == 3){
                                                                 this.router.navigate(["address"]);
+                                                            }else if(customersstep[0]['id_step'] == 3){
+                                                                this.router.navigate(["payment"]);
                                                             }else if(customersstep[0]['id_step'] == 4){
                                                                 this.router.navigate(["success"]);
                                                             }
