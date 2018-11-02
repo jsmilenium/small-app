@@ -2,6 +2,13 @@ create database small_app;
 
 use small_app;
 
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 CREATE TABLE `customer` (
   `id_customer` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) DEFAULT NULL,
@@ -9,8 +16,11 @@ CREATE TABLE `customer` (
   `telephone` varchar(45) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id_customer`)
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_customer`),
+  CONSTRAINT `fk_customer_user` FOREIGN KEY (`id_customer`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
 CREATE TABLE `customer_address` (
   `id_customer_address` int(11) NOT NULL AUTO_INCREMENT,
@@ -58,13 +68,6 @@ CREATE TABLE `customer_step` (
   CONSTRAINT `fk_customer_step_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_customer_step_step` FOREIGN KEY (`id_step`) REFERENCES `step` (`id_step`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `user` (`username`, `password`) VALUES ('admin', 'admin');
 
